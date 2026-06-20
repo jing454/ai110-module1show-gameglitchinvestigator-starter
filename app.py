@@ -32,19 +32,20 @@ def parse_guess(raw: str):
 def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
-
+    
+#FIX ME: should display go higher if guess is too low and vice versa (FIXED). The ai fixed this bug by swapping the GO LOWER AND GO HIGHER message in the code
     try:
         if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
+            return "Too High", "📉 Go LOWER!"
         else:
-            return "Too Low", "📉 Go LOWER!"
+            return "Too Low", "📈 Go HIGHER!"
     except TypeError:
         g = str(guess)
         if g == secret:
             return "Win", "🎉 Correct!"
         if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+            return "Too High", "📉 Go LOWER!"
+        return "Too Low", "📈 Go HIGHER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -63,6 +64,7 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score - 5
 
     return current_score
+
 
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
@@ -155,6 +157,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
+#FIX ME: says game over after submitting with 2 attempts left. (noticed)
         if st.session_state.attempts % 2 == 0:
             secret = str(st.session_state.secret)
         else:
@@ -162,9 +165,17 @@ if submit:
 
         outcome, message = check_guess(guess_int, secret)
 
+#fix me: should still display outcome of guess even if hint is off. (FIXED).  The ai fixed this by adding an condition if wrong guess, then print outcome.
+
+        # Always show the outcome of the guess, regardless of the hint setting.
+        if outcome != "Win":
+            st.warning("❌ Wrong guess. Try again!")
+
+        # The hint check only controls the directional higher/lower hint.
         if show_hint:
             st.warning(message)
 
+#FIX ME: score is incorrect (goes negative and doesn't update correctly)(noticed)
         st.session_state.score = update_score(
             current_score=st.session_state.score,
             outcome=outcome,
