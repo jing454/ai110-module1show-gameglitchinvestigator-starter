@@ -26,27 +26,65 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [ ] Describe the game's purpose.
+The game purpose is a classic guess the number for users to play. You can change difficultly and have hints on while the user guesses a number. It is created with bugs to test the developer to fix bugs using ai
+
 - [ ] Detail which bugs you found.
+1.Code generates the wrong logic. If guess is lower than answer then system generates too high and vice versa. this logic is incorrect
+
+2.Code does not print result if hint is unchecked. it should not give too high or too low hints but should still output if the guess is incorrect or correct.
+
 - [ ] Explain what fixes you applied.
+1. Switched the comment of the logic in that part of the code. if guess is lower than answer then print too low and vice versa
+
+2. Added an additional if statement that basically prints wrong answer if the guess is incorrect even if the hint box is unchecked.
 
 ## 📸 Demo Walkthrough
 
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
-1. <!-- Describe this step -->
-2. <!-- Describe this step -->
-3. <!-- Describe this step -->
-4. <!-- Describe this step -->
-5. <!-- Add more steps as needed -->
+1. entered in a value of 1 
+2. system returns too low
+3. entered in a value of 30
+4. system returns too low
+5. entered in a value of 60 
+6. system return too low
+7. continue until i enter 100 
+8. system return too high and game over
+9. started new game
+10. unchecked hints
+11. entered in a value of 30
+12. system doesnt output anything 
+13. number of tries goes down
 
 **Screenshot** *(optional)*: <!-- Insert a screenshot of your fixed, winning game here -->
 
 ## 🧪 Test Results
 
 ```
-# Paste your pytest output here, e.g.:
-# pytest tests/
-# ========================= X passed in 0.XXs =========================
+ameglitchinvestigator-starter> pytest
+================ test session starts ================
+platform win32 -- Python 3.14.3, pytest-9.1.1, pluggy-
+rootdir: C:\Users\11791\OneDrive\Desktop\ai110-module1show-gameglitchinvestigator-starter
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.13.0
+collected 7 items                                    
+
+tests\test_game_logic.py .......               [100%]
+
+================= 7 passed in 1.23s =================
+
+============================================================================== test session starts ===============================================================================
+rootdir: C:\Users\11791\OneDrive\Desktop\ai110-module1show-gameglitchinvestigator-starter
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.13.0
+collected 5 items                                                                                                                                                                 
+
+tests\test_game_logic.py .....                                                                                                                                              [100%]
+
+=============================================================================== 5 passed in 1.21s ================================================================================
+
 ```
 
 ## 🚀 Stretch Features

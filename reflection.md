@@ -8,8 +8,9 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
-
+hint does not display result
 guess is backward (go higher if guess is higher)
+
 Says game over when i have 1 attempt left out of nowhere
 **Bug Reproduction Log**
 
@@ -58,11 +59,25 @@ For the logic where it doesnt display the outcome i told the ai to design a pyte
 
 - How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
 
+streamlit is used to generate a website like react but it is used mainly for python. "Reruns" means the the page refreshes when an action was made on the website from the start of the code (the code basically reruns at the start). So in this case, if you click submit guess, the code reruns app.py from the start all over again
+
+problem is that everytime we rerun, the variable gets erased. So if you're score is 5 and you press submit, it'll go to 0 since code runs from the start and resets your score
+
+This is where session state comes into play. Session-state basically tells the code: hey, this should survive reruns. this means that this value should not be resetted. One example of this is the secret number. We dont want the secret number that we're guessing to be resetted since this completely ruins the game's logic and makes it act randomly
 ---
 
 ## 5. Looking ahead: your developer habits
 
 - What is one habit or strategy from this project that you want to reuse in future labs or projects?
   - This could be a testing habit, a prompting strategy, or a way you used Git.
+
+  Defintely is to use ai for bug fixes and help me locate the issue. Instead of looking through the entire code line by line and trying to figure out what is the error, i can use ai to find it in like 30 seconds. However, i shouldnt follow ai randomly as i saw it can make mistakes and bring up completely different issues
+
 - What is one thing you would do differently next time you work with AI on a coding task?
+
+To use ai as more of a error catcher and a issue solver. Also to use it responsbility and know what's it talking about before blindly applying fixes 
+
+
 - In one or two sentences, describe how this project changed the way you think about AI generated code.
+
+I think that ai generated code is fine but it's def still up to the user to apply fixes and apply some stuff yourself. For example, in web dev, ai can help you design the logic and how to create things but in the end it's up to you to deal with the UX stuff. Additionally, you should also know what the ai generated codes are saying instead of following it blindly as it can make mistakes and may not be able to catch some errors.
